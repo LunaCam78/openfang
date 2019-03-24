@@ -76,13 +76,11 @@ $IP = shell_exec('echo -n $(ifconfig wlan0 |grep "inet addr" |awk \'{print $2}\'
                     </option>
                     <option value="SXJ02ZM" <?php if ( exec('nvram get rtdev model') == "SXJ02ZM" ) echo "selected" ?> >T20L Xiaomi Mijia 2018
                     </option>
-                    <option value="SENISC5" <?php if ( exec('nvram get rtdev model') == "SENISC5" ) echo "selected" ?> >T20L Xiaomi Xiaofang 1S
+                    <option value="T20L_WC" <?php if ( exec('nvram get rtdev model') == "T20L_WC" ) echo "selected" ?> >T20L Wyze cam v2
                     </option>
-                    <option value="WYZEC2" <?php if ( exec('nvram get rtdev model') == "WYZEC2" ) echo "selected" ?> >T20X Wyze cam v2
-                    </option>
-                  <option value="DF3" <?php if ( exec('nvram get rtdev model') == "DF3" ) echo "selected" ?> >T20X Xiaomi Dafang
+                  <option value="T20_D" <?php if ( exec('nvram get rtdev model') == "T20_D" ) echo "selected" ?> >T20 Xiaomi Dafang
                   </option>
-                  <option value="WYZECP1" <?php if ( exec('nvram get rtdev model') == "WYZECP1" ) echo "selected" ?> >T20X Wyze pan
+                  <option value="T20_WP" <?php if ( exec('nvram get rtdev model') == "T20_WP" ) echo "selected" ?> >T20 Wyze pan
                   </option>
                 <option value="T20_DEV_MD" <?php if ( exec('nvram get rtdev model') == "T20_DEV_MD" ) echo "selected" ?> >T20 Medlar Dev Board
                 </option>
