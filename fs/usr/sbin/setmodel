@@ -12,6 +12,9 @@ nvram set rtdev motion_script_off "sh /opt/scripts/motion-script-off.sh"
 	nvram set rtdev motion_tracking_script "sh /opt/scripts/motion-track-script.sh"
 }
 
+nvram set 2860 ir_filter_pin1 25
+nvram set 2860 ir_filter_pin2 26
+
 # Xiaomi Dafang, Wyze Cam Pan, Wyze Cam V2
 nvram set 2860 ir_filter_pin1 25
 nvram set 2860 ir_filter_pin2 26
@@ -60,7 +63,7 @@ nvram set 2860 "rtsp.en_audio" ""
 
 # Xiaomi Xiaofang 1S
 # mtdparts=jz_sfc:256k(boot),2048k(kernel),3392k(root),640k(driver),4736k(appfs),2048k(backupk),640k(backupd),2048k(backupa),256k(config),256k(para),-(flag)
-{ [ "$model" = "T20L_XF1S" ]; } && {
+{ [ "$model" = "SENISC5" ]; } && {
 	nvram set 2860 blue_led_pin led_blue;
 	nvram set 2860 yellow_led_pin led_yellow;
 	nvram set 2860 ir_pin 49;
