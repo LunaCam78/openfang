@@ -32,8 +32,40 @@
  
  #ifdef CONFIG_SFC_NOR
 -	#define CONFIG_BOOTCOMMAND "sf probe;sf read 0x80600000 0x40000 0x280000; bootm 0x80600000"
-+	#define CONFIG_BOOTCOMMAND \
-+	"if printenv soctype; then echo \"Settings are already stored!\"; else echo \"Storing settings ...\"; jzsoc; saveenv; echo \"Settings have been stored!\"; fi; \
++	#define CONFIG_BOOTCOMMAND " \
++	if printenv soctype; then \
++	  echo \"Settings are already stored!\"; \
++	else \
++	  jzsoc; saveenv; \
++	fi; \
++	if test \"${soctype}\" = \"T20L\" && test \"${flashtype}\" = \"EN25QH128A\" && i2c probe 0x40 ; then \
++	  gpio set 38; gpio set 39; gpio set 47; gpio set 43; gpio clear 48; sleep 3; gpio clear 43; if printenv hwversion; then true; else setenv hwversion SENISC5; saveenv; fi; \
++	  \
++	else if test \"${soctype}\" = \"T20X\" && test \"${flashtype}\" = \"GD25Q128\" && i2c probe 0x40 ; then \
++	  gpio set 38; gpio set 39; gpio set 47; gpio set 43; gpio clear 48; if printenv hwversion; then true; else setenv hwversion DF3; saveenv; fi; \
++	  \
++	else if test \"${soctype}\" = \"T20L\" && test \"${flashtype}\" = \"W25Q128\" ; then \
++	  gpio set 75; gpio set 76; gpio set 60; if printenv hwversion; then true; else setenv hwversion SXJ02ZM; saveenv; fi; \
++	  \
++	else if test \"${soctype}\" = \"T20X\" && test \"${flashtype}\" = \"EN25QH128A\" && i2c probe 0x40 ; then \
++	  gpio set 38; gpio set 39; gpio set 47; gpio set 43; gpio clear 48; sleep 3; gpio clear 43; if printenv hwversion; then true; else setenv hwversion WYZEC2; saveenv; fi; \
++	  \
++	else \
++	  if printenv count; then \
++	    if test \"${count}\" = \"1\"; then \
++	      echo \"c: ${count}\"; setenv count 2; saveenv; \
++	      gpio set 43; gpio clear 48; sleep 3; gpio clear 43; \
++	    else \
++	      echo \"c: ${count}\"; gpio set 43; gpio clear 48; \
++	    fi; \
++	  else \
++	    echo \"c: ${count}\"; setenv count 1; saveenv; \
++	    gpio set 43; gpio clear 48; \
++	  fi; \
++	fi; fi; fi; fi; \
++	echo Hardware found: ${hwversion}; \
++	\
++	\
 +	echo \"Sets yellow LED off\"; gpio set 38; \
 +	echo \"Sets blue LED off\"; \
 +	gpio set 39; \
