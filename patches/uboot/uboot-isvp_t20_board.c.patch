@@ -26,9 +26,18 @@
 +	run_command("sf probe",0);
 +
 +	printf("Enables SDCARD\n");
-+	run_command("gpio set 43",0);
-+	run_command("sleep 1",0);
-+	run_command("gpio clear 48",0);
++	if (strncmp(getenv("count"), "1", 1) == 0) {
++		printf("ping\n");
++		run_command("gpio set 43",0);
++		run_command("gpio clear 48",0);
++		run_command("sleep 3",0);
++		run_command("gpio clear 43",0);
++	} else {
++		printf("pong\n");
++		run_command("gpio set 43",0);
++		run_command("sleep 1",0);
++		run_command("gpio clear 48",0);
++	}
 +
 +	//printf("Checks Auto Update\n");
 +	//run_command("sdupdate",0);
