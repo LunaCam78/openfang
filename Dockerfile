@@ -16,8 +16,12 @@ RUN \
   lzop \
   bc \
   libncurses5-dev \
-  ccache
-
+  ccache \
+  gawk \
+  libgtk2.0-dev \
+  lzop \
+  bc\
+   gcc-mips-linux-gnu \
 RUN locale-gen --no-purge en_US.UTF-8
-COPY . /root/openfang/
-WORKDIR /root/openfang
+COPY . /root/borgfang/
+WORKDIR /root/borgfang

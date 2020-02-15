@@ -1,0 +1,5 @@
+config BR2_PACKAGE_KERNEL_MODULE_R8152
+        bool "r8152_module"
+        depends on BR2_LINUX_KERNEL
+        help
+                New Realtek R8152/8153 USB Ethernet driver

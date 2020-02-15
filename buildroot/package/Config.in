@@ -1636,6 +1636,7 @@ menu "buildroot-packages [external repo]"
 	source "package/v4l2rtspserver/Config.in"
 	source "package/oss/Config.in"
 	source "package/mtk-nvram/Config.in"
+	source "package/r8152/Config.in"
 endmenu
 
 endmenu
