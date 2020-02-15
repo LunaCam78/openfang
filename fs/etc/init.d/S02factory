@@ -27,8 +27,9 @@ case "$1" in
 			[ "$model_name" = "" ] && { modprobe sinfo; echo 1 >/proc/jz/sinfo/info; sleep 10; reboot; }
 			# hardware was identified; commit the model changes
 			setmodel "$model_name"
-			[ $? ] && { echo "Settings have been applied acording to the model."; reboot; }
-			nvram commit
+<<<<<<< HEAD
+	
+			nvram commit; echo "Settings have been applied acording to the model."; reboot
 		else
 			# check if reset button is pressed
 			number=$(nvram get 2860 reset_pin)

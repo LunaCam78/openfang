@@ -54,6 +54,7 @@
 +	else \
 +	  if printenv count; then \
 +	    if test \"${count}\" = \"1\"; then \
+<<<<<<< HEAD
 +	      echo \"ping: ${count}\"; setenv count 2; saveenv; \
 +	      gpio set 43; gpio clear 48; sleep 3; gpio clear 43; \
 +	    else \
@@ -61,6 +62,15 @@
 +	    fi; \
 +	  else \
 +	    echo \"pong: ${count}\"; setenv count 1; saveenv; \
+=======
++	      echo \"c: ${count}\"; setenv count 2; saveenv; \
++	      gpio set 43; gpio clear 48; sleep 3; gpio clear 43; \
++	    else \
++	      echo \"c: ${count}\"; gpio set 43; gpio clear 48; \
++	    fi; \
++	  else \
++	    echo \"c: ${count}\"; setenv count 1; saveenv; \
+>>>>>>> 443faaa... Fix automode.
 +	    gpio set 43; gpio clear 48; \
 +	  fi; \
 +	fi; fi; fi; fi; \
@@ -81,16 +91,7 @@
 +		"if ext4load mmc 0:1 0x80600000 uEnv.txt; then " \
 +	    env import -t 0x80600000 ${filesize}; setenv bootargs \"${bootargs} hwversion=${hwversion}\"; boot; \
 +			"echo uEnv found - Booting from microsd ...; " \
-+			"gpio clear 39;"\
-+			"env import -t 0x80600000 ${filesize};" \
-+			"boot;" \
-+		"fi;" \
-+        "else " \
-+		"echo MMC not found...; " \
-+	"fi;" \
-+	"echo Booting from Flash...; " \
-+	"gpio clear 38;"\
-+	"sf probe;sf read 0x80600000 0x40000 0x280000; bootm 0x80600000;"
++	    gpio clear 39; env import -t 0x80600000 ${filesize}; setenv bootargs \"${bootargs} hwversion=${hwversion}\"; boot; \
  #endif /* CONFIG_SFC_NOR */
  
  /**
