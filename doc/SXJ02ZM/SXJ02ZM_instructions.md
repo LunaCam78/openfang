@@ -104,6 +104,8 @@ Attention: it's highly recommended NOT TO IGNORE THIS STEP, because this is the 
 
 
 # 4. Preparing the SD card (Windows/macOS/Linux)
+TODO: For this section, you need an openfang rootfs.
+
 ## Flash rootfs using Windows
 - Download and install any partitioning software. My favourite freeware for this is Active Partition Manager.
 - In Active Partition Manager, erase all partitions of the SD card.
@@ -147,8 +149,27 @@ dd if=/path/to/image/rootfs.ext2 of=/dev/sdb1
 to flash the rootfs image.
 
 
+# Flash rootfs using macOS
+In a terminal, use
+
+```bash
+diskutil list
+```
+
+to find the name for your SD card (e.g. `disk2`), then run
+
+```bash
+sudo diskutil partitionDisk disk2 2 MBR exFAT boot 4G exFAT home R
+diskutil umount disk2s1
+sudo dd if=/path/to/image/rootfs.ext2 of=/dev/disk2s1
+```
+
+to partition it (into one 4GB exFAT partition named "boot" and another filling the rest of the card named "home") and copy in the rootfs.
+
 
 # 5. Configuration of the camera
+Eject the SD card and put it into the camera.
+
 If everything went well so far, your camera's front LED should be flashing in different colors, and after a couple of seconds should stay orange. If this is the case, you can now connect your computer to the temporary created hotspot from the camera for the initial setup.
 When you connect to the openfang network, go to https://192.168.14.1 in a browser to access the panel. Use admin/admin in order to log on.
 
