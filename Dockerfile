@@ -14,8 +14,9 @@ RUN apt-get update && apt-get install -y \
     python \
     unzip \
     vim \
-    wget && \
-  rm -rf /var/lib/apt/lists/*
+    wget
+# Can't remove apt lists -- oss configure script libgtk fails without them and
+# installing libgtk takes up way more space than the lists do.
 
 RUN locale-gen --no-purge en_US.UTF-8
 COPY . /root/openfang
